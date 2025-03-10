@@ -6,8 +6,8 @@ library(data.table)
 
 ## -----------------------------------------------------------------------------
 # Load the in-situ data and the coordinates
-data("BD_Insitu")
-data("Cords_Insitu")
+data("BD_Insitu", package = "RFplus")
+data("Cords_Insitu", package = "RFplus")
 
 # Load the covariates
 MSWEP = terra::rast(system.file("extdata/MSWEP.nc", package = "RFplus"))
@@ -17,40 +17,44 @@ DEM = terra::rast(system.file("extdata/DEM.nc", package = "RFplus"))
 
 ## -----------------------------------------------------------------------------
 # Adjust individual covariates to the covariate format required by RFplus
-Covariates_list = list(MSWEP = MSWEP, CHIRPS = CHIRPS, DEM = DEM)
+Covariates = list(MSWEP = MSWEP, CHIRPS = CHIRPS, DEM = DEM)
 
-# Verify the extension and the reference coordinate system of the covariates.
-# extension
-geom_check = sapply(Covariates_list[-1], function(r) terra::compareGeom(Covariates_list[[1]], r))
-
-if (!all(geom_check)) {
-  stop("Error: The spatial geometry of the covariates does not match.")
-}
-
-# reference coordinate system
-crs_list = list(terra::crs(MSWEP), terra::crs(CHIRPS), terra::crs(DEM))
-
-if (!all(sapply(crs_list, function(x) identical(x, crs_list[[1]])))) {
-  stop("Error: The coordinate reference system (CRS) of the covariates does not match.")
-}
-
-
-
-## -----------------------------------------------------------------------------
-# Apply the RFplus bias correction model (example using "QUANT" method)
-model_example = RFplus(
-  BD_Insitu = BD_Insitu, Cords_Insitu = Cords_Insitu, Covariates = Covariates_list, 
-  n_round = 1, wet.day = 0.1, ntree = 2000, seed = 123, method = "QUANT", 
-  ratio = 15, save_model = FALSE, name_save = NULL
+# Apply the RFplus -----------------------------------------------------------
+# 1. Define categories to categorize rainfall intensity
+Rain_threshold = list(
+  no_rain = c(0, 1),
+  light_rain = c(1, 5),
+  moderate_rain = c(5, 20),
+  heavy_rain = c(20, 40),
+  violent_rain = c(40, 100)
+)
+# 2. Apply de the model
+model = RFplus(BD_Insitu, Cords_Insitu, Covariates, n_round = 1, wet.day = 0.1 , ntree = 2000, seed = 123, training = 0.8, Rain_threshold = Rain_threshold, method = "RQUANT", ratio = 5, save_model = FALSE, name_save = NULL
 )
 
-# Other methods such as "RQUANT" and "none" can be used by changing the 'method' argument.
+## -----------------------------------------------------------------------------
+# Precipitation results within the study area
+modelo_rainfall = model$Ensamble
 
+# Validation statistic results 
+# goodness-of-fit metrics
+metrics_gof = model$Validation$gof
+
+# Categorical Metrics
+metrics_categoricxal = model$Validation$categorical_metrics
+# Note: In the above example we used 80% of the data for training and 20% for model validation. 
 
 ## -----------------------------------------------------------------------------
 # First layer of the QUANT method
-plot(model_example[[1]])
+plot(modelo_rainfall[[1]])
 
 
-
+## -----------------------------------------------------------------------------
+Rain_threshold = list(
+  no_rain = c(0, 1), # No precipitation
+  light_rain = c(1, 5), # Light rainfall
+  moderate_rain = c(5, 20), # Moderate rainfall
+  heavy_rain = c(20, 40), # Heavy rainfall
+  violent_rain = c(40, 100) # violent rain
+)
 

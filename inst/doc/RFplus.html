@@ -392,12 +392,11 @@ sensing-based estimations across diverse environmental conditions.</p>
 <h2>Example using RFplus</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(RFplus)</span></code></pre></div>
-<pre><code>## RFplus 1.4-0</code></pre>
+<pre><code>## RFplus 1.5-4</code></pre>
 <pre><code>## Type RFplusNews() to see new features/changes/bug fixes.</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div>
-<pre><code>## Warning: package &#39;terra&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## terra 1.8.29</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;data.table&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:terra&#39;:
@@ -406,32 +405,32 @@ sensing-based estimations across diverse environmental conditions.</p>
 </div>
 <div id="load-the-example-datasets" class="section level2">
 <h2>Load the example datasets</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Load the in-situ data and the coordinates</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;BD_Insitu&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Cords_Insitu&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># Load the covariates</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>MSWEP <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/MSWEP.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>CHIRPS <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/CHIRPS.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>DEM <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/DEM.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Load the in-situ data and the coordinates</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;BD_Insitu&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Cords_Insitu&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co"># Load the covariates</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>MSWEP <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/MSWEP.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>CHIRPS <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/CHIRPS.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>DEM <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/DEM.nc&quot;</span>, <span class="at">package =</span> <span class="st">&quot;RFplus&quot;</span>))</span></code></pre></div>
 </div>
 <div id="prepare-covariates-and-apply-rfplus" class="section level2">
 <h2>Prepare covariates and apply RFplus</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Adjust individual covariates to the covariate format required by RFplus</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>Covariates <span class="ot">=</span> <span class="fu">list</span>(<span class="at">MSWEP =</span> MSWEP, <span class="at">CHIRPS =</span> CHIRPS, <span class="at">DEM =</span> DEM)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Apply the RFplus -----------------------------------------------------------</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co"># 1. Define categories to categorize rainfall intensity</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>Rain_threshold <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="at">no_rain =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  <span class="at">light_rain =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>  <span class="at">moderate_rain =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>),</span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  <span class="at">heavy_rain =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>),</span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="at">violent_rain =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">100</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>)</span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co"># 2. Apply de the model</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">RFplus</span>(BD_Insitu, Cords_Insitu, Covariates, <span class="at">n_round =</span> <span class="dv">1</span>, <span class="at">wet.day =</span> <span class="fl">0.1</span> , <span class="at">ntree =</span> <span class="dv">2000</span>, <span class="at">seed =</span> <span class="dv">123</span>, <span class="at">training =</span> <span class="fl">0.8</span>, <span class="at">Rain_threshold =</span> Rain_threshold, <span class="at">method =</span> <span class="st">&quot;RQUANT&quot;</span>, <span class="at">ratio =</span> <span class="dv">5</span>, <span class="at">save_model =</span> <span class="cn">FALSE</span>, <span class="at">name_save =</span> <span class="cn">NULL</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Adjust individual covariates to the covariate format required by RFplus</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>Covariates <span class="ot">=</span> <span class="fu">list</span>(<span class="at">MSWEP =</span> MSWEP, <span class="at">CHIRPS =</span> CHIRPS, <span class="at">DEM =</span> DEM)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Apply the RFplus -----------------------------------------------------------</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># 1. Define categories to categorize rainfall intensity</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>Rain_threshold <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="at">no_rain =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  <span class="at">light_rain =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>  <span class="at">moderate_rain =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  <span class="at">heavy_rain =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>  <span class="at">violent_rain =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">100</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co"># 2. Apply de the model</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">RFplus</span>(BD_Insitu, Cords_Insitu, Covariates, <span class="at">n_round =</span> <span class="dv">1</span>, <span class="at">wet.day =</span> <span class="fl">0.1</span> , <span class="at">ntree =</span> <span class="dv">2000</span>, <span class="at">seed =</span> <span class="dv">123</span>, <span class="at">training =</span> <span class="fl">0.8</span>, <span class="at">Rain_threshold =</span> Rain_threshold, <span class="at">method =</span> <span class="st">&quot;RQUANT&quot;</span>, <span class="at">ratio =</span> <span class="dv">5</span>, <span class="at">save_model =</span> <span class="cn">FALSE</span>, <span class="at">name_save =</span> <span class="cn">NULL</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## The training parameter has been introduced. The model will be trained with: 80 % data and validated with: 20 %</code></pre>
 <pre><code>## Analysis in progress: Stage 1 of 2. Please wait...</code></pre>
 <pre><code>## Analysis in progress: Stage 2 of 2. Correction by: RQUANT. Please wait...</code></pre>
@@ -441,22 +440,22 @@ sensing-based estimations across diverse environmental conditions.</p>
 </div>
 <div id="visualize-the-results" class="section level2">
 <h2>Visualize the results</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Precipitation results within the study area</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>modelo_rainfall <span class="ot">=</span> model<span class="sc">$</span>Ensamble</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co"># Validation statistic results </span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co"># goodness-of-fit metrics</span></span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>metrics_gof <span class="ot">=</span> model<span class="sc">$</span>Validation<span class="sc">$</span>gof</span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co"># Categorical Metrics</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>metrics_categoricxal <span class="ot">=</span> model<span class="sc">$</span>Validation<span class="sc">$</span>categorical_metrics</span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co"># Note: In the above example we used 80% of the data for training and 20% for model validation. </span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Precipitation results within the study area</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>modelo_rainfall <span class="ot">=</span> model<span class="sc">$</span>Ensamble</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co"># Validation statistic results </span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="co"># goodness-of-fit metrics</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>metrics_gof <span class="ot">=</span> model<span class="sc">$</span>Validation<span class="sc">$</span>gof</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co"># Categorical Metrics</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>metrics_categoricxal <span class="ot">=</span> model<span class="sc">$</span>Validation<span class="sc">$</span>categorical_metrics</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co"># Note: In the above example we used 80% of the data for training and 20% for model validation. </span></span></code></pre></div>
 </div>
 <div id="example-of-displaying-an-interpolated-layer" class="section level2">
 <h2>Example of displaying an interpolated layer</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># First layer of the QUANT method</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">plot</span>(modelo_rainfall[[<span class="dv">1</span>]])</span></code></pre></div>
-<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># First layer of the QUANT method</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">plot</span>(modelo_rainfall[[<span class="dv">1</span>]])</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="note" class="section level2">
 <h2>Note</h2>
@@ -468,13 +467,13 @@ Detection (POD), False Alarm Rate (FAR), Critical Success Index (CSI),
 among others.</p>
 <p>This parameter should be defined as a list, where each category
 corresponds to a range of precipitation values. For example:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>Rain_threshold <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  <span class="at">no_rain =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># No precipitation</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  <span class="at">light_rain =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="co"># Light rainfall</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>  <span class="at">moderate_rain =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>), <span class="co"># Moderate rainfall</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>  <span class="at">heavy_rain =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="co"># Heavy rainfall</span></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>  <span class="at">violent_rain =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">100</span>) <span class="co"># violent rain</span></span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>Rain_threshold <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="at">no_rain =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># No precipitation</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="at">light_rain =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="co"># Light rainfall</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="at">moderate_rain =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>), <span class="co"># Moderate rainfall</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="at">heavy_rain =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="co"># Heavy rainfall</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  <span class="at">violent_rain =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">100</span>) <span class="co"># violent rain</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>)</span></code></pre></div>
 <p>This parameter should only be specified when training is different
 from 1, because in this case the algorithm performs a validation of the
 results.</p>

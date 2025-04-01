@@ -2,8 +2,8 @@ Package: RFplus
 Type: Package
 Title: Machine Learning for Merging Satellite and Ground Precipitation
         Data
-Version: 1.4-0
-Date: 2025-03-15
+Version: 1.5-4
+Date: 2025-03-31
 Encoding: UTF-8
 Authors@R: c(person("Jonnathan Augusto", "Landi Bermeo", email = "jonnathan.landi@outlook.com",
                   role = c("aut", "cre", "cph"), comment = c(ORCID = "0009-0003-3162-6647")),
@@ -20,12 +20,12 @@ URL: https://github.com/Jonnathan-Landi/RFplus
 BugReports: https://github.com/Jonnathan-Landi/RFplus/issues
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2025-03-10 15:10:02 UTC
+Date/Publication: 2025-04-01 03:10:02 UTC
 RoxygenNote: 7.3.2
 Suggests: knitr, rmarkdown, testthat (>= 3.0.0), covr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Packaged: 2025-03-10 14:54:04 UTC; Jonna
+Packaged: 2025-04-01 02:46:49 UTC; Jonna
 Author: Jonnathan Augusto Landi Bermeo [aut, cre, cph]
     (<https://orcid.org/0009-0003-3162-6647>),
   Alex Avilés [aut] (<https://orcid.org/0000-0001-9278-5738>),
